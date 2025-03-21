@@ -22,6 +22,7 @@ with pkgs; [
   caprine
   (nerdfonts.override {fonts = ["FiraCode"];})
   #jofinstall
+      stow
   zip
   appimage-run
   hyprlandPlugins.hyprexpo
