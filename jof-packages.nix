@@ -1,0 +1,57 @@
+{ pkgs }:
+with pkgs; [
+  google-chrome
+  alacritty
+  zsh-powerlevel10k
+  font-manager
+  spotify
+  kbdd
+  hsetroot
+  wireguard-tools
+  telegram-desktop
+  pavucontrol
+  brightnessctl
+  graphicsmagick
+  zenity
+  ponymix
+  xdg-utils
+  xdragon
+  signal-desktop
+  eog
+  i3lock-fancy-rapid
+  caprine
+  (nerdfonts.override {fonts = ["FiraCode"];})
+  #jofinstall
+  zip
+  appimage-run
+  hyprlandPlugins.hyprexpo
+  ddcutil
+  fzf
+  kdiff3
+  gimp
+  nwg-bar
+  grim
+  slurp
+  wl-clipboard
+  hyprlock
+  waybar
+  hyprland-per-window-layout
+  wofi
+  autorandr
+  pulseaudio
+  asciinema
+  tmate
+  vivaldi
+  python312Packages.uv
+  helix
+  clang-tools
+  tig
+  xclip
+  acpi
+  bc
+  jq
+  tree
+  meld
+  htop
+  (pidgin.override { plugins = [ purple-facebook pidgin-window-merge ]; })
+]
