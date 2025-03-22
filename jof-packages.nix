@@ -22,8 +22,8 @@ with pkgs; [
   caprine
   (nerdfonts.override {fonts = ["FiraCode"];})
   #jofinstall
-      vlc
-      stow
+  vlc
+  stow
   zip
   appimage-run
   hyprlandPlugins.hyprexpo
