@@ -22,6 +22,7 @@ with pkgs; [
   caprine
   (nerdfonts.override {fonts = ["FiraCode"];})
   #jofinstall
+      vlc
       stow
   zip
   appimage-run
