@@ -28,6 +28,10 @@ in
     packages = jofPackages;
   };
 
+environment.sessionVariables = rec {
+    HYPRLAND_CONFIG = "$HOME/.config/hypr/johann-p1.conf";
+  };
+
   programs._1password-gui.polkitPolicyOwners = [ "johann" ];
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
