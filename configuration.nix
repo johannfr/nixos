@@ -215,6 +215,7 @@ fonts = {
     networkmanager-openconnect
     polkit
     hyprpolkitagent
+    nwg-bar
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

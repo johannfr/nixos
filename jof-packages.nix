@@ -31,7 +31,6 @@ with pkgs; [
   fzf
   kdiff3
   gimp
-  nwg-bar
   grim
   slurp
   wl-clipboard
