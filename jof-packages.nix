@@ -42,7 +42,6 @@ with pkgs; [
   pulseaudio
   asciinema
   tmate
-  vivaldi
   python312Packages.uv
   helix
   clang-tools
