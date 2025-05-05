@@ -128,6 +128,10 @@
   programs.hyprland = {
     enable = true;
   };
+ 
+  environment.sessionVariables = rec {
+    HYPRLAND_CONFIG = "$HOME/.config/hypr/${config.networking.hostName}.conf";
+  };
 
   programs.zsh = {
     enable = true;

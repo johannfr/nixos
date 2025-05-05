@@ -61,9 +61,9 @@ in
     ];
     shell = pkgs.zsh;
   };
-  environment.sessionVariables = rec {
-    HYPRLAND_CONFIG = "$HOME/.config/hypr/jof-x1.conf";
-  };
+  # environment.sessionVariables = rec {
+  #   HYPRLAND_CONFIG = "$HOME/.config/hypr/jof-x1.conf";
+  # };
 
 }
 
