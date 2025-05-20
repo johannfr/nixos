@@ -9,7 +9,6 @@ in
   # Wireguard
   networking.firewall = {
     allowedUDPPorts = [ 51820 ];
-    allowedTCPPorts = [ 8000 ];
   };
 
   networking.wireguard.interfaces = {
@@ -20,10 +19,10 @@ in
       peers = [
         {
           publicKey = "4wPxWrFDu2q+okeMiVGbkwZfI6gbCUCrq/8XRNq5Ngk=";
-	  allowedIPs = [ "172.30.0.0/24" "172.31.0.0/24" ];
-	  endpoint = "vpn.jof.guru:51820";
-	  persistentKeepalive = 5;
-	}
+	        allowedIPs = [ "172.30.0.0/24" "172.31.0.0/24" ];
+	        endpoint = "vpn.jof.guru:51820";
+	        persistentKeepalive = 5;
+	      }
       ];
     };
   };
