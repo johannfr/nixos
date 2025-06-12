@@ -22,7 +22,7 @@ in
 
   # Wireguard
   networking.firewall = {
-    allowedUDPPorts = [ 51820 ];
+    allowedUDPPorts = [ 51820 10000 ];
   };
 
   networking.wireguard.interfaces = {
@@ -41,12 +41,25 @@ in
     };
   };
 
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
+  };
+
+  services.fprintd.enable = true;
+
   users.users.johann = {
     isNormalUser = true;
     description = "Johann Fridriksson";
     extraGroups = [ "networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" ];
     shell = pkgs.zsh;
     packages = jofPackages;
+  };
+
+  users.users.testuser = {
+    isNormalUser = true;
+    description = "Test User";
+    shell = pkgs.zsh;
   };
 
   # environment.sessionVariables = rec {

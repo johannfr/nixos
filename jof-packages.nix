@@ -20,7 +20,8 @@ with pkgs; [
   eog
   i3lock-fancy-rapid
   caprine
-  (nerdfonts.override {fonts = ["FiraCode"];})
+  #(nerdfonts.override {fonts = ["FiraCode"];})
+  nerd-fonts.fira-code
   #jofinstall
   vlc
   stow
