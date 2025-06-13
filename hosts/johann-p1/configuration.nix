@@ -23,6 +23,7 @@ in
   # Wireguard
   networking.firewall = {
     allowedUDPPorts = [ 51820 10000 ];
+    allowedTCPPorts = [ 2345 ];
   };
 
   networking.wireguard.interfaces = {
@@ -40,6 +41,19 @@ in
       ];
     };
   };
+
+  services.microsocks = {
+    enable = true;
+    port = 2345;
+    ip = "172.30.0.13";
+  };
+
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
+  };
+
+  services.fprintd.enable = true;
 
   users.users.johann = {
     isNormalUser = true;
