@@ -239,6 +239,15 @@ fonts = {
     hyprpolkitagent
     nwg-bar
   ];
+
+  # Let's do fingerprints.
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
+  };
+
+  services.fprintd.enable = true;
+
   security.polkit.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
