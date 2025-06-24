@@ -23,6 +23,7 @@ with pkgs; [
   #(nerdfonts.override {fonts = ["FiraCode"];})
   nerd-fonts.fira-code
   #jofinstall
+    gurk-rs
     rofi
     rofimoji
     google-chat-linux
