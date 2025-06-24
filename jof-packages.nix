@@ -23,6 +23,7 @@ with pkgs; [
   #(nerdfonts.override {fonts = ["FiraCode"];})
   nerd-fonts.fira-code
   #jofinstall
+    rofimoji
     google-chat-linux
   vlc
   stow
