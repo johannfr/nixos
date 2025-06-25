@@ -1,4 +1,11 @@
 { config, pkgs, ... }:
+let
+  myNixVim = builtins.getFlake "github:johannfr/nixvim";
+  vim-alias = pkgs.runCommand "vim-alias" { } ''
+    mkdir -p $out/bin
+    ln -s ${myNixVim.packages.${pkgs.system}.default}/bin/nvim $out/bin/vim
+  '';
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -116,10 +123,10 @@
     enable = true;
   };
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
+  # programs.neovim = {
+  #   enable = true;
+  #   defaultEditor = true;
+  # };
 
   programs.firefox = {
     enable = true;
@@ -238,6 +245,8 @@ fonts = {
     polkit
     hyprpolkitagent
     nwg-bar
+    myNixVim.packages.${pkgs.system}.default
+    vim-alias
   ];
 
   # Let's do fingerprints.
