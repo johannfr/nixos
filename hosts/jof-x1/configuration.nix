@@ -31,7 +31,7 @@ in
   users.users.jof = {
     isNormalUser = true;
     description = "Jóhann Friðriksson";
-    extraGroups = [ "networkmanager" "wheel" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" ];
     packages = jofPackages;
     shell = pkgs.zsh;
   };
@@ -39,7 +39,7 @@ in
   users.users.arna = {
     isNormalUser = true;
     description = "Arna Dögg Tómasdóttir";
-    extraGroups = ["networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" ];
     packages = with pkgs; [
       google-chrome
       caprine-bin
@@ -50,7 +50,7 @@ in
   users.users.trommur = {
     isNormalUser = true;
     description = "Jóhann Friðriksson";
-    extraGroups = ["networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" ];
     packages = with pkgs; [
       reaper
       ardour
@@ -60,6 +60,7 @@ in
     ];
     shell = pkgs.zsh;
   };
+
   # environment.sessionVariables = rec {
   #   HYPRLAND_CONFIG = "$HOME/.config/hypr/jof-x1.conf";
   # };
