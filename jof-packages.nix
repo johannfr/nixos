@@ -23,12 +23,13 @@ with pkgs; [
   #(nerdfonts.override {fonts = ["FiraCode"];})
   nerd-fonts.fira-code
   #jofinstall
-    mako
-    any-nix-shell
-    gurk-rs
-    rofi
-    rofimoji
-    google-chat-linux
+  profanity
+  mako
+  any-nix-shell
+  gurk-rs
+  rofi
+  rofimoji
+  google-chat-linux
   vlc
   stow
   zip

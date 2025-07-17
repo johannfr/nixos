@@ -57,6 +57,8 @@ in
       firefox
       alsa-scarlett-gui
       mixxx
+      yabridge
+      yabridgectl
     ];
     shell = pkgs.zsh;
   };
