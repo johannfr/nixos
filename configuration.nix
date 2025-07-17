@@ -171,6 +171,9 @@ in
     ohMyZsh = {
       enable = true;
       # theme = "robbyrussell";
+      preLoaded = ''
+        zstyle ':omz:*' aliases no
+      '';
       plugins = [
         "sudo"
         "pip"
