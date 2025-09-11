@@ -12,21 +12,21 @@ in
     allowedTCPPorts = [ 8000 ];
   };
 
-  # networking.wireguard.interfaces = {
-  #   wg0 = {
-  #     ips = [ "172.30.0.11/24" ];
-  #     listenPort = 51820;
-  #     privateKeyFile = "/etc/wireguard/private";
-  #     peers = [
-  #       {
-  #         publicKey = "4wPxWrFDu2q+okeMiVGbkwZfI6gbCUCrq/8XRNq5Ngk=";
-  #         allowedIPs = [ "172.30.0.0/24" "172.31.0.0/24" ];
-  #         endpoint = "vpn.jof.guru:51820";
-  #         persistentKeepalive = 5;
-  #       }
-  #     ];
-  #   };
-  # };
+  networking.wireguard.interfaces = {
+    wg0 = {
+      ips = [ "172.30.0.14/24" ];
+      listenPort = 51820;
+      privateKeyFile = "/etc/wireguard/private";
+      peers = [
+        {
+          publicKey = "4wPxWrFDu2q+okeMiVGbkwZfI6gbCUCrq/8XRNq5Ngk=";
+          allowedIPs = [ "172.30.0.0/24" "172.31.0.0/24" ];
+          endpoint = "vpn.jof.guru:51820";
+          persistentKeepalive = 5;
+        }
+      ];
+    };
+  };
   programs._1password-gui.polkitPolicyOwners = [ "jof" "arna" "trommur" ];
 
   users.users.jof = {
