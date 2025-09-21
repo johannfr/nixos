@@ -11,6 +11,13 @@ in
     allowedUDPPorts = [ 51820 ];
   };
 
+  security.pam.loginLimits = [
+    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
+    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
+    { domain = "@audio"; item = "nofile"; type = "soft"; value = "99999"; }
+    { domain = "@audio"; item = "nofile"; type = "hard"; value = "99999"; }
+  ];
+
   networking.wireguard.interfaces = {
     wg0 = {
       ips = [ "172.30.0.11/24" ];
@@ -50,7 +57,7 @@ in
   users.users.trommur = {
     isNormalUser = true;
     description = "Jóhann Friðriksson";
-    extraGroups = [ "networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" "audio" ];
     packages = with pkgs; [
       reaper
       ardour
@@ -59,6 +66,7 @@ in
       mixxx
       yabridge
       yabridgectl
+      wineWowPackages.stable
     ];
     shell = pkgs.zsh;
   };
