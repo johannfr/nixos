@@ -58,6 +58,7 @@ in
       firefox
       alsa-scarlett-gui
       mixxx
+      musescore
     ];
     shell = pkgs.zsh;
   };
