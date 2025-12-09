@@ -3,7 +3,7 @@ let
   myNixVim = builtins.getFlake "github:johannfr/nixvim";
   vim-alias = pkgs.runCommand "vim-alias" { } ''
     mkdir -p $out/bin
-    ln -s ${myNixVim.packages.${pkgs.system}.default}/bin/nvim $out/bin/vim
+    ln -s ${myNixVim.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/nvim $out/bin/vim
   '';
 in
 {
@@ -75,8 +75,8 @@ in
 
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
    # Configure keymap in X11
   services.xserver.xkb = {
@@ -187,14 +187,13 @@ in
 fonts = {
   packages = with pkgs; [
     corefonts
-    ubuntu_font_family
+    ubuntu-classic
     powerline-fonts
     font-awesome
     source-code-pro
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
-    emojione
+    noto-fonts-color-emoji
     kanji-stroke-order-font
     ipafont
     fira-code
@@ -241,14 +240,10 @@ fonts = {
     psmisc
     git
     git-lfs
-    openconnect
-    globalprotect-openconnect
-    gpclient
-    networkmanager-openconnect
     polkit
     hyprpolkitagent
     nwg-bar
-    myNixVim.packages.${pkgs.system}.default
+    myNixVim.packages.${pkgs.stdenv.hostPlatform.system}.default
     vim-alias
   ];
 

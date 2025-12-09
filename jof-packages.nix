@@ -15,7 +15,7 @@ with pkgs; [
   zenity
   ponymix
   xdg-utils
-  xdragon
+  dragon-drop
   signal-desktop
   eog
   i3lock-fancy-rapid
@@ -63,5 +63,4 @@ with pkgs; [
   tree
   meld
   htop
-  (pidgin.override { plugins = [ purple-facebook pidgin-window-merge ]; })
 ]
