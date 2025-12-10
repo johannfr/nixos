@@ -245,6 +245,7 @@ fonts = {
     nwg-bar
     myNixVim.packages.${pkgs.stdenv.hostPlatform.system}.default
     vim-alias
+    deja-dup
   ];
 
   # Let's do fingerprints.
