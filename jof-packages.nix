@@ -1,4 +1,4 @@
-{ pkgs }:
+{pkgs}:
 with pkgs; [
   google-chrome
   alacritty
@@ -23,8 +23,8 @@ with pkgs; [
   #(nerdfonts.override {fonts = ["FiraCode"];})
   nerd-fonts.fira-code
   #jofinstall
-    gitui
-    direnv
+  gitui
+  direnv
   profanity
   mako
   any-nix-shell
@@ -53,8 +53,6 @@ with pkgs; [
   asciinema
   tmate
   python312Packages.uv
-  helix
-  clang-tools
   tig
   xclip
   acpi
