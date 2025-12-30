@@ -1,19 +1,21 @@
-{ config, pkgs, ... }:
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   myNixVim = builtins.getFlake "github:johannfr/nixvim";
-  vim-alias = pkgs.runCommand "vim-alias" { } ''
+  vim-alias = pkgs.runCommand "vim-alias" {} ''
     mkdir -p $out/bin
     ln -s ${myNixVim.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/nvim $out/bin/vim
   '';
-in
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./current_host/hardware-configuration.nix
-      ./current_host/configuration.nix
-    ];
+in {
+  imports = [
+    # Include the results of the hardware scan.
+    ./current_host/hardware-configuration.nix
+    ./current_host/configuration.nix
+  ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Bootloader.
   boot = {
@@ -33,9 +35,8 @@ in
     plymouth.enable = true;
     plymouth.font = "${pkgs.hack-font}/share/fonts/truetype/Hack-Regular.ttf";
     plymouth.logo = "${pkgs.nixos-icons}/share/icons/hicolor/128x128/apps/nix-snowflake.png";
- };
+  };
 
-  
   networking.networkmanager.enable = true;
 
   services.udev.extraRules = ''
@@ -45,7 +46,7 @@ in
     SUBSYSTEM=="input", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="612[0-7]", GROUP="input", MODE="0660"
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="612[0-7]", TAG+="uaccess"
     KERNEL=="hidraw*", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="612[0-7]", TAG+="uaccess", GROUP="input", MODE="0660"
-    
+
     SUBSYSTEM=="input", ATTRS{idVendor}=="37a8", ATTRS{idProduct}=="*", GROUP="input", MODE="0660"
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="37a8", ATTRS{idProduct}=="*", TAG+="uaccess"
     KERNEL=="hidraw*", ATTRS{idVendor}=="37a8", ATTRS{idProduct}=="*", TAG+="uaccess", GROUP="input", MODE="0660"
@@ -73,12 +74,11 @@ in
 
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 
-
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
-   # Configure keymap in X11
+  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -96,8 +96,6 @@ in
     openFirewall = true;
   };
 
-
-
   # Enable sound
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -113,7 +111,7 @@ in
     pulse.enable = true;
   };
 
-  nix.settings.trusted-users = [ "root" "@wheel" ];
+  nix.settings.trusted-users = ["root" "@wheel"];
 
   programs._1password = {
     enable = true;
@@ -135,7 +133,7 @@ in
   programs.hyprland = {
     enable = true;
   };
- 
+
   environment.sessionVariables = rec {
     HYPRLAND_CONFIG = "$HOME/.config/hypr/${config.networking.hostName}.conf";
   };
@@ -184,41 +182,46 @@ in
     };
   };
 
-fonts = {
-  packages = with pkgs; [
-    corefonts
-    ubuntu-classic
-    powerline-fonts
-    font-awesome
-    source-code-pro
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-color-emoji
-    kanji-stroke-order-font
-    ipafont
-    fira-code
-    fira-code-symbols
-    jetbrains-mono
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
-    liberation_ttf
-    mplus-outline-fonts.githubRelease
-    dina-font
-    proggyfonts
-  ];
+  fonts = {
+    packages = with pkgs; [
+      corefonts
+      ubuntu-classic
+      powerline-fonts
+      font-awesome
+      source-code-pro
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+      kanji-stroke-order-font
+      ipafont
+      fira-code
+      fira-code-symbols
+      jetbrains-mono
 
-  fontconfig = {
-    defaultFonts = {
-      monospace = [
-    "JetBrains Mono"
-        "Fira Code"
-    "Fira Mono for Powerline"
-    "DejaVu Sans Mono"
-    "Noto Mono"
-    "Noto Color Emoji"
-      ];
+      liberation_ttf
+      mplus-outline-fonts.githubRelease
+      dina-font
+      proggyfonts
+    ];
+
+    fontconfig = {
+      defaultFonts = {
+        monospace = [
+          "JetBrains Mono"
+          "Fira Code"
+          "Fira Mono for Powerline"
+          "DejaVu Sans Mono"
+          "Noto Mono"
+          "Noto Color Emoji"
+        ];
+      };
     };
   };
-};
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -226,8 +229,8 @@ fonts = {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     wget
     curl
     bluetuith
@@ -250,7 +253,7 @@ fonts = {
 
   # Let's do fingerprints.
   systemd.services.fprintd = {
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
     serviceConfig.Type = "simple";
   };
 
@@ -284,5 +287,4 @@ fonts = {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
