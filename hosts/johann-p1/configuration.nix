@@ -24,6 +24,13 @@ in {
     };
   };
 
+  # Create the writable paths for Cortex
+  systemd.tmpfiles.rules = [
+    "d /var/lib/cortex-agent/traps 0700 root root -"
+    "d /var/lib/cortex-agent/etc 0755 root root -"
+    "d /var/log/cortex-agent 0755 root root -"
+  ];
+
   # Wireguard
   networking.firewall = {
     allowedUDPPorts = [51820 10000];
@@ -72,11 +79,6 @@ in {
     description = "Test User";
     shell = pkgs.zsh;
   };
-
-  # Map the /opt directory so the agent can find its own files
-  systemd.tmpfiles.rules = [
-    "L+ /opt/traps - - - - /etc/profiles/per-user/root/opt/traps"
-  ];
 
   # environment.sessionVariables = rec {
   #   HYPRLAND_CONFIG = "$HOME/.config/hypr/johann-p1.conf";
