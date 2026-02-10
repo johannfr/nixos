@@ -138,14 +138,21 @@ in {
     HYPRLAND_CONFIG = "$HOME/.config/hypr/${config.networking.hostName}.conf";
   };
 
+  programs.starship = {
+    enable = true;
+    settings = builtins.fromTOML (builtins.readFile (pkgs.runCommand "starship-preset" {} ''
+      ${pkgs.starship}/bin/starship preset nerd-font-symbols > $out
+    ''));
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
 
-    promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     shellAliases = {
       cat = "bat";
+      sudo = "sudo ";
     };
     shellInit = ''
       # Reverse search global - arrow keys local
@@ -163,23 +170,12 @@ in {
       zle -N down-line-or-local-history
       bindkey "$\{terminfo[kcuu1]}" up-line-or-local-history
       bindkey "$\{terminfo[kcud1]}" down-line-or-local-history
+      export EDITOR=vim
       export MCFLY_KEY_SCHEME=vim
       eval "$(mcfly init zsh)"
+      any-nix-shell zsh --info-right | source /dev/stdin
+
     '';
-    ohMyZsh = {
-      enable = true;
-      # theme = "robbyrussell";
-      preLoaded = ''
-        zstyle ':omz:*' aliases no
-      '';
-      plugins = [
-        "sudo"
-        "pip"
-        "git"
-        "git-lfs"
-        "git-flow"
-      ];
-    };
   };
 
   programs.direnv = {
@@ -249,6 +245,9 @@ in {
     myNixVim.packages.${pkgs.stdenv.hostPlatform.system}.default
     vim-alias
     deja-dup
+    (hunspell.withDicts (ds: [
+      hunspellDicts.en-us-large
+    ]))
   ];
 
   # Let's do fingerprints.

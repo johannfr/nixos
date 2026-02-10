@@ -20,11 +20,11 @@ with pkgs; [
   eog
   i3lock-fancy-rapid
   caprine
-  #(nerdfonts.override {fonts = ["FiraCode"];})
   nerd-fonts.fira-code
   #jofinstall
-    gradia
-    waypipe
+  starship
+  gradia
+  waypipe
   gitui
   direnv
   profanity
