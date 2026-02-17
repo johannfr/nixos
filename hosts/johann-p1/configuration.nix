@@ -33,7 +33,7 @@ in {
 
   # Wireguard
   networking.firewall = {
-    allowedUDPPorts = [51820 10000];
+    allowedUDPPorts = [51820];
     allowedTCPPorts = [2345];
   };
 
