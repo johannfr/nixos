@@ -145,16 +145,27 @@ in {
     ''));
   };
 
+  programs.vivid = {
+    enable = true;
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
+    autosuggestions.enable = true;
 
     shellAliases = {
       cat = "bat";
       sudo = "sudo ";
     };
-    shellInit = ''
+    interactiveShellInit = ''
+      # The "Menu Select" behavior: Arrow keys to navigate completions
+      zstyle ':completion:*' menu select
+      zstyle ':completion:*' group-name '''
+      zstyle ':completion:*' list-colors '''
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
       # Reverse search global - arrow keys local
       up-line-or-local-history() {
           zle set-local-history 1
