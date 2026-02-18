@@ -33,30 +33,7 @@ in {
 
   # Wireguard
   networking.firewall = {
-    allowedUDPPorts = [51820];
-    allowedTCPPorts = [2345];
-  };
-
-  networking.wireguard.interfaces = {
-    wg0 = {
-      ips = ["172.30.0.13/24"];
-      listenPort = 51820;
-      privateKeyFile = "/etc/wireguard/private";
-      peers = [
-        {
-          publicKey = "4wPxWrFDu2q+okeMiVGbkwZfI6gbCUCrq/8XRNq5Ngk=";
-          allowedIPs = ["172.30.0.0/24" "172.31.0.0/24"];
-          endpoint = "vpn.jof.guru:51820";
-          persistentKeepalive = 5;
-        }
-      ];
-    };
-  };
-
-  services.microsocks = {
     enable = true;
-    port = 2345;
-    ip = "172.30.0.13";
   };
 
   systemd.services.fprintd = {
