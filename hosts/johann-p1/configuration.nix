@@ -64,4 +64,5 @@ in {
   programs._1password-gui.polkitPolicyOwners = ["johann"];
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+  programs.thunderbird.enable = true;
 }
