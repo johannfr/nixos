@@ -9,6 +9,7 @@ in {
   networking.extraHosts = ''
     192.168.199.33 isavia-tern
     192.168.1.26 isds-a
+    192.168.122.66 aio
   '';
 
   virtualisation.docker = {

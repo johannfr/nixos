@@ -63,4 +63,5 @@ with pkgs; [
   tree
   meld
   htop
+  kanshi
 ]

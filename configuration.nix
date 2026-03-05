@@ -136,6 +136,20 @@ in {
 
   environment.sessionVariables = rec {
     HYPRLAND_CONFIG = "$HOME/.config/hypr/${config.networking.hostName}.conf";
+    PAGER = "ov";
+    NIX_PAGER = "ov";
+    OV_OPTIONS = "--line-numbers";
+  };
+
+  programs.git = {
+    enable = true;
+    config = {
+      core.pager = "delta";
+      interactive.diffFilter = "delta --color-only";
+      delta = {
+        side-by-side = true;
+      };
+    };
   };
 
   programs.starship = {
@@ -181,6 +195,13 @@ in {
       zle -N down-line-or-local-history
       bindkey "$\{terminfo[kcuu1]}" up-line-or-local-history
       bindkey "$\{terminfo[kcud1]}" down-line-or-local-history
+      bindkey "^[[1;3C" forward-word # Alt+Right
+      bindkey '^[[1;2C' forward-word # Shift+Right
+      bindkey "^[[1;3D" backward-word # Alt+Left
+      bindkey '^[[1;2D' backward-word # Shift+Left
+
+
+
       export EDITOR=vim
       export MCFLY_KEY_SCHEME=vim
       eval "$(mcfly init zsh)"
@@ -250,6 +271,8 @@ in {
     psmisc
     git
     git-lfs
+    delta
+    ov
     polkit
     hyprpolkitagent
     nwg-bar
@@ -259,6 +282,7 @@ in {
     (hunspell.withDicts (ds: [
       hunspellDicts.en-us-large
     ]))
+    openconnect
   ];
 
   # Let's do fingerprints.
