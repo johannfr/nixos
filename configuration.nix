@@ -143,6 +143,7 @@ in {
 
   programs.git = {
     enable = true;
+    lfs.enable = true;
     config = {
       core.pager = "delta";
       interactive.diffFilter = "delta --color-only";
