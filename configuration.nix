@@ -155,9 +155,13 @@ in {
 
   programs.starship = {
     enable = true;
-    settings = builtins.fromTOML (builtins.readFile (pkgs.runCommand "starship-preset" {} ''
-      ${pkgs.starship}/bin/starship preset nerd-font-symbols > $out
-    ''));
+    presets = ["nerd-font-symbols"];
+    settings = {
+      git_branch = {
+        truncation_length = 30;
+        truncation_symbol = "…";
+      };
+    };
   };
 
   programs.vivid = {
