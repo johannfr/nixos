@@ -1,44 +1,65 @@
-{ config, pkgs, ... }:
-
-let
-  jofPackages = import ../jof-packages.nix { inherit pkgs; };
-in
 {
+  config,
+  pkgs,
+  ...
+}: let
+  jofPackages = import ../jof-packages.nix {inherit pkgs;};
+in {
   networking.hostName = "jof-x1"; # Define your hostname.
 
   # Wireguard
   networking.firewall = {
-    allowedUDPPorts = [ 51820 ];
+    allowedUDPPorts = [51820];
   };
 
   security.pam.loginLimits = [
-    { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
-    { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
-    { domain = "@audio"; item = "nofile"; type = "soft"; value = "99999"; }
-    { domain = "@audio"; item = "nofile"; type = "hard"; value = "99999"; }
+    {
+      domain = "@audio";
+      item = "memlock";
+      type = "-";
+      value = "unlimited";
+    }
+    {
+      domain = "@audio";
+      item = "rtprio";
+      type = "-";
+      value = "99";
+    }
+    {
+      domain = "@audio";
+      item = "nofile";
+      type = "soft";
+      value = "99999";
+    }
+    {
+      domain = "@audio";
+      item = "nofile";
+      type = "hard";
+      value = "99999";
+    }
   ];
 
   networking.wireguard.interfaces = {
     wg0 = {
-      ips = [ "172.30.0.11/24" ];
+      ips = ["172.30.0.11/24"];
       listenPort = 51820;
       privateKeyFile = "/etc/wireguard/private";
       peers = [
         {
           publicKey = "4wPxWrFDu2q+okeMiVGbkwZfI6gbCUCrq/8XRNq5Ngk=";
-	        allowedIPs = [ "172.30.0.0/24" "172.31.0.0/24" ];
-	        endpoint = "vpn.jof.guru:51820";
-	        persistentKeepalive = 5;
-	      }
+          allowedIPs = ["172.30.0.0/24" "172.31.0.0/24"];
+          endpoint = "vpn.jof.guru:51820";
+          persistentKeepalive = 5;
+        }
       ];
     };
   };
-  programs._1password-gui.polkitPolicyOwners = [ "jof" "arna" "trommur" ];
+  programs._1password-gui.polkitPolicyOwners = ["jof" "arna" "trommur"];
 
   users.users.jof = {
     isNormalUser = true;
     description = "Jóhann Friðriksson";
-    extraGroups = [ "networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" ];
+    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout"];
     packages = jofPackages;
     shell = pkgs.zsh;
   };
@@ -46,7 +67,7 @@ in
   users.users.arna = {
     isNormalUser = true;
     description = "Arna Dögg Tómasdóttir";
-    extraGroups = [ "networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" ];
+    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout"];
     packages = with pkgs; [
       google-chrome
       caprine-bin
@@ -57,7 +78,7 @@ in
   users.users.trommur = {
     isNormalUser = true;
     description = "Jóhann Friðriksson";
-    extraGroups = [ "networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" "audio" ];
+    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" "audio"];
     packages = with pkgs; [
       reaper
       ardour
@@ -74,6 +95,4 @@ in
   # environment.sessionVariables = rec {
   #   HYPRLAND_CONFIG = "$HOME/.config/hypr/jof-x1.conf";
   # };
-
 }
-
