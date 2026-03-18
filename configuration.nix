@@ -293,6 +293,7 @@ in {
       hunspellDicts.en-us-large
     ]))
     openconnect
+    gnomeExtensions.appindicator
   ];
 
   # Let's do fingerprints.
