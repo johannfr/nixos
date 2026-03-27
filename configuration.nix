@@ -220,11 +220,6 @@ in {
     nix-direnv.enable = true;
   };
 
-  programs.nixbit = {
-    enable = true;
-    repository = "https://github.com/johannfr/nixos";
-  };
-
   fonts = {
     packages = with pkgs; [
       corefonts
@@ -294,6 +289,8 @@ in {
     ]))
     openconnect
     gnomeExtensions.appindicator
+    gnomeExtensions.dash-to-panel
+    gnomeExtensions.dash-to-dock
   ];
 
   # Let's do fingerprints.
