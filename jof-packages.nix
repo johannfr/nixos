@@ -22,6 +22,7 @@ with pkgs; [
   caprine
   nerd-fonts.fira-code
   #jofinstall
+    opencode
     evince
   starship
   gradia
