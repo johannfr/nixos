@@ -22,8 +22,8 @@ with pkgs; [
   caprine
   nerd-fonts.fira-code
   #jofinstall
-    opencode
-    evince
+  opencode
+  evince
   starship
   gradia
   waypipe
@@ -41,7 +41,6 @@ with pkgs; [
   zip
   appimage-run
   hyprlandPlugins.hyprexpo
-  ddcutil
   fzf
   kdiff3
   gimp

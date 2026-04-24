@@ -47,7 +47,7 @@ in {
   users.users.johann = {
     isNormalUser = true;
     description = "Johann Fridriksson";
-    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" "i2c"];
     shell = pkgs.zsh;
     packages = jofPackages;
   };

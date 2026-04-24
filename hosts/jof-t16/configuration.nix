@@ -57,7 +57,7 @@ in {
   users.users.jof = {
     isNormalUser = true;
     description = "Jóhann Friðriksson";
-    extraGroups = ["networkmanager" "wheel" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "dialout" "i2c"];
     packages = jofPackages;
     shell = pkgs.zsh;
   };
@@ -65,7 +65,7 @@ in {
   users.users.arna = {
     isNormalUser = true;
     description = "Arna Dögg Tómasdóttir";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "i2c"];
     packages = with pkgs; [
       google-chrome
       caprine-bin
@@ -76,7 +76,7 @@ in {
   users.users.trommur = {
     isNormalUser = true;
     description = "Jóhann Friðriksson";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "i2c"];
     packages = with pkgs; [
       ardour
       firefox

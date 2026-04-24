@@ -37,6 +37,8 @@ in {
     plymouth.logo = "${pkgs.nixos-icons}/share/icons/hicolor/128x128/apps/nix-snowflake.png";
   };
 
+  hardware.i2c.enable = true;
+
   networking.networkmanager.enable = true;
 
   services.udev.extraRules = ''
@@ -269,6 +271,7 @@ in {
     bluetuith
     mcfly
     inetutils
+    ddcutil
     bat
     silver-searcher
     file

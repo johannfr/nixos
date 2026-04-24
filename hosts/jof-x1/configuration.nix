@@ -59,7 +59,7 @@ in {
   users.users.jof = {
     isNormalUser = true;
     description = "Jóhann Friðriksson";
-    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" "i2c"];
     packages = jofPackages;
     shell = pkgs.zsh;
   };
@@ -67,7 +67,7 @@ in {
   users.users.arna = {
     isNormalUser = true;
     description = "Arna Dögg Tómasdóttir";
-    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" "i2c"];
     packages = with pkgs; [
       google-chrome
       caprine-bin
@@ -78,7 +78,7 @@ in {
   users.users.trommur = {
     isNormalUser = true;
     description = "Jóhann Friðriksson";
-    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" "audio"];
+    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" "audio" "i2c"];
     packages = with pkgs; [
       reaper
       ardour
