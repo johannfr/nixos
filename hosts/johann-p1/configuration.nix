@@ -37,13 +37,6 @@ in {
     enable = true;
   };
 
-  systemd.services.fprintd = {
-    wantedBy = ["multi-user.target"];
-    serviceConfig.Type = "simple";
-  };
-
-  services.fprintd.enable = true;
-
   users.users.johann = {
     isNormalUser = true;
     description = "Johann Fridriksson";
