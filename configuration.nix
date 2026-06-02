@@ -140,7 +140,7 @@ in {
   };
 
   environment.sessionVariables = rec {
-    HYPRLAND_CONFIG = "$HOME/.config/hypr/${config.networking.hostName}.conf";
+    HYPRLAND_CONFIG = "$HOME/.config/hypr/${config.networking.hostName}.lua";
     PAGER = "ov -F -X";
     NIX_PAGER = "ov -F -X";
     OV_OPTIONS = "--line-numbers";

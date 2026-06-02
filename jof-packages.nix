@@ -40,7 +40,6 @@ with pkgs; [
   stow
   zip
   appimage-run
-  hyprlandPlugins.hyprexpo
   fzf
   kdiff3
   gimp
