@@ -75,23 +75,6 @@ in {
     shell = pkgs.zsh;
   };
 
-  users.users.trommur = {
-    isNormalUser = true;
-    description = "Jóhann Friðriksson";
-    extraGroups = ["networkmanager" "wheel" "video" "render" "libvirtd" "docker" "input" "dialout" "audio" "i2c"];
-    packages = with pkgs; [
-      reaper
-      ardour
-      firefox
-      alsa-scarlett-gui
-      mixxx
-      yabridge
-      yabridgectl
-      wineWowPackages.stable
-    ];
-    shell = pkgs.zsh;
-  };
-
   # environment.sessionVariables = rec {
   #   HYPRLAND_CONFIG = "$HOME/.config/hypr/jof-x1.conf";
   # };
