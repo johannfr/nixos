@@ -13,6 +13,19 @@ in {
     allowedTCPPorts = [8000];
   };
 
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      "bip" = "172.27.0.1/16";
+      "default-address-pools" = [
+        {
+          "base" = "172.27.0.0/16";
+          "size" = 24;
+        }
+      ];
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     reaper
     reaper-sws-extension
@@ -57,7 +70,7 @@ in {
   users.users.jof = {
     isNormalUser = true;
     description = "Jóhann Friðriksson";
-    extraGroups = ["networkmanager" "wheel" "dialout" "i2c"];
+    extraGroups = ["networkmanager" "wheel" "dialout" "i2c" "docker"];
     packages = jofPackages;
     shell = pkgs.zsh;
   };
